@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: system-center
+  cloud:
+    nacos:
+      discovery:
+        server-addr: @nacos.url@
+        namespace: public
+      config:
+        server-addr: @nacos.url@
+        namespace: public
+        group: DEFAULT_GROUP
+        fileExtension: yaml
+  profiles:
+    active: @profiles.active@
+server:
+  port: 8089

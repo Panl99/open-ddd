@@ -1,0 +1,49 @@
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/system-center?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 50
+      max-lifetime: 600000
+    tomcat:
+      test-on-borrow: true
+      validation-query: SELECT  1
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+    show-sql: true
+    generate-ddl: true
+    open-in-view: false
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    properties:
+      hibernate:
+        generate_statistics: false
+        jdbc:
+          batch_size: 1000
+        order_inserts: true
+  main:
+    allow-circular-references: true
+es:
+  nodes:
+    - x
+  username: elastic
+  password: only4play
+invoice:
+  operate:
+    drawer: 张三
+    reviewer: 李四
+    payee: 王五
+jwt:
+  secret: 3532jwetewtwetwetwe88
+op:
+  security:
+    urls:
+      un-auth-urls:
+        - /v3/api-docs/**
+        - /swagger-ui/**
+        - /swagger-ui.html
+        - /actuator/health

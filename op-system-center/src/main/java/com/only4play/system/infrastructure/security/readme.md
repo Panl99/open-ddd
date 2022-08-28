@@ -1,0 +1,2 @@
+security starter 对单体也是适用的
+主要解决授权问题

@@ -1,0 +1,9 @@
+/.idea/
+/op-common-starters.iml
+/**/*.iml
+/**/target/
+/op-jdbc-spring-boot-starter/target/
+/op-jooq-spring-boot-starter/target/
+/op-jpa-boot-starter/target/
+/op-com.only4play.adminweb.security-spring-boot-starter/target/
+/op-web-spring-boot-starter/target/

@@ -1,0 +1,8 @@
+# Created by .ignore support plugin (hsz.mobi)
+op-archetypes.iml
+.idea
+.idea/**
+op-service-archetype/op-service-archetype.iml
+op-web-archetype/op-web-archetype.iml
+op-web-archetype/target/**
+op-service-archetype/target/**

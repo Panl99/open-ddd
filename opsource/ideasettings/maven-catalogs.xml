@@ -1,0 +1,12 @@
+<application>
+  <component name="MavenCatalogManager">
+    <option name="local">
+      <list>
+        <Local>
+          <option name="name" value="archetype-catalog.xml" />
+          <option name="path" value="$USER_HOME$/Downloads/archetype-catalog.xml" />
+        </Local>
+      </list>
+    </option>
+  </component>
+</application>

@@ -1,0 +1,21 @@
+logging:
+  level:
+    root: off
+
+template:
+  list:
+    -
+      archetypeGroupId: com.only4play
+      archetypeArtifactId: op-service-archetype
+      archetypeVersion: 1.0.0-SNAPSHOT
+      templateName: service基础模板
+    -
+      archetypeGroupId: com.only4play
+      archetypeArtifactId: op-service-archetype
+      archetypeVersion: 1.0.0-SNAPSHOT
+      templateName: web基础模板
+    -
+      archetypeGroupId: com.only4play
+      archetypeArtifactId: op-service-archetype
+      archetypeVersion: 1.0.0-SNAPSHOT
+      templateName: job基础模板

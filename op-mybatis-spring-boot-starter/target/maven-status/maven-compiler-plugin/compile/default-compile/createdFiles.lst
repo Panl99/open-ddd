@@ -1,0 +1,9 @@
+com/only4play/mybatis/support/BaseEntityOperation.class
+com/only4play/mybatis/support/EntityCreator.class
+com/only4play/mybatis/support/Executor.class
+com/only4play/mybatis/support/EntityUpdater.class
+com/only4play/mybatis/support/UpdateHandler.class
+com/only4play/mybatis/support/EntityOperation.class
+com/only4play/mybatis/support/Create.class
+com/only4play/mybatis/support/Loader.class
+com/only4play/mybatis/support/EntityOperations.class

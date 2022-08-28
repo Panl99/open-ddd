@@ -1,0 +1,133 @@
+<templateSet group="only4play">
+  <template name="op-rep" value="import jpa.support.BaseRepository;&#10;&#10;public interface $entity$Repository extends BaseRepository&lt;$entity$, Long&gt; {&#10;}&#10;" description="gen repository" toReformat="false" toShortenFQNames="true">
+    <variable name="entity" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="op-service" value="import com.only4play.common.model.PageRequestWrapper;&#10;import org.springframework.data.domain.Page;&#10;&#10;public interface I$entity$ApplicationService {&#10;    Long create$entity$($entity$Dto dto);&#10;    void update$entity$($entity$Updater updater);&#10;    void valid$entity$(Long id);&#10;    void invalid$entity$(Long id);&#10;    $entity$Vo findById(Long id);&#10;    Page&lt;$entity$Vo&gt; findByPage(PageRequestWrapper&lt;$entity$Query&gt; query);&#10;}" description="gen service interface" toReformat="false" toShortenFQNames="true">
+    <variable name="entity" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="op-impl" value="import static com.only4play.jpa.support.EntityOperations.doCreate;&#10;import static com.only4play.jpa.support.EntityOperations.doUpdate;&#10;import com.only4play.common.constants.CodeEnum;&#10;import com.only4play.common.exception.BusinessException;&#10;import com.only4play.common.model.PageRequestWrapper;&#10;import com.querydsl.core.BooleanBuilder;&#10;import lombok.extern.slf4j.Slf4j;&#10;import org.springframework.data.domain.Page;&#10;import org.springframework.data.domain.PageImpl;&#10;import org.springframework.data.domain.PageRequest;&#10;import org.springframework.data.domain.Sort;&#10;import org.springframework.data.domain.Sort.Direction;&#10;import org.springframework.stereotype.Service;&#10;import org.springframework.transaction.annotation.Transactional;&#10;import java.util.Optional;&#10;import java.util.stream.Collectors;&#10;&#10;/**&#10; * @author gim&#10; */&#10;@Transactional&#10;@Service&#10;@Slf4j&#10;public class $entity$ApplicationServiceImpl implements I$entity$ApplicationService {&#10;&#10;  private final $entity$Repository $lowerEntity$Repository;&#10;&#10;  public $entity$ApplicationServiceImpl($entity$Repository $lowerEntity$Repository) {&#10;    this.$lowerEntity$Repository = $lowerEntity$Repository;&#10;  }&#10;&#10;  @Override&#10;  public Long create$entity$($entity$Creator dto) {&#10;&#10;    Optional&lt;$entity$&gt; $lowerEntity$ =&#10;        doCreate($lowerEntity$Repository)&#10;            .create(() -&gt; $entity$Mapper.INSTANCE.dtoToEntity(dto))&#10;            .update(e -&gt; e.init())&#10;            .execute();&#10;    return $lowerEntity$.isPresent() ? $lowerEntity$.get().getId() : 0;&#10;  }&#10;&#10;  @Override&#10;  public void update$entity$($entity$Updater updater) {&#10;    doUpdate($lowerEntity$Repository)&#10;        .loadById(updater.getId())&#10;        .update(entity -&gt; updater.update$entity$(entity))&#10;        .execute();&#10;  }&#10;&#10;  @Override&#10;  public void valid$entity$(Long id) {&#10;    doUpdate($lowerEntity$Repository)&#10;        .loadById(id)&#10;        .update(entity -&gt; entity.valid())&#10;        .execute();&#10;  }&#10;&#10;  @Override&#10;  public void invalid$entity$(Long id) {&#10;    doUpdate($lowerEntity$Repository)&#10;        .loadById(id)&#10;        .update(entity -&gt; entity.invalid())&#10;        .execute();&#10;  }&#10;&#10;  @Override&#10;  public $entity$VO findById(Long id) {&#10;    Optional&lt;$entity$&gt; $lowerEntity$ = $lowerEntity$Repository.findById(id);&#10;    return new $entity$VO(&#10;        $lowerEntity$.orElseThrow(() -&gt; new BusinessException(CodeEnum.NotFindError)));&#10;  }&#10;&#10;  @Override&#10;  public Page&lt;$entity$VO&gt; findByPage(PageRequestWrapper&lt;$entity$Query&gt; query) {&#10;    BooleanBuilder booleanBuilder = pageCondition(query);&#10;    Page&lt;$entity$&gt; page = $lowerEntity$Repository.findAll(booleanBuilder,&#10;        PageRequest.of(query.getPage() - 1, query.getPageSize(), Sort.by(&#10;            Direction.DESC, &quot;createdAt&quot;)));&#10;    return new PageImpl&lt;&gt;(page.getContent().stream().map(entity -&gt; new $entity$VO(entity))&#10;        .collect(Collectors.toList()), page.getPageable(), page.getTotalElements());&#10;  }&#10;&#10;  private BooleanBuilder pageCondition(PageRequestWrapper&lt;$entity$Query&gt; query) {&#10;    BooleanBuilder booleanBuilder = new BooleanBuilder();&#10;    // TODO add query&#10;    return booleanBuilder;&#10;  }&#10;}" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="entity" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="lowerEntity" expression="camelCase(entity)" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="op-entity" value="import com.only4play.codegen.processor.api.GenCreateRequest;&#10;import com.only4play.codegen.processor.api.GenFeign;&#10;import com.only4play.codegen.processor.api.GenQueryRequest;&#10;import com.only4play.codegen.processor.api.GenResponse;&#10;import com.only4play.codegen.processor.api.GenUpdateRequest;&#10;import com.only4play.codegen.processor.controller.GenController;&#10;import com.only4play.codegen.processor.creator.GenCreator;&#10;import com.only4play.codegen.processor.mapper.GenMapper;&#10;import com.only4play.codegen.processor.query.GenQuery;&#10;import com.only4play.codegen.processor.repository.GenRepository;&#10;import com.only4play.codegen.processor.service.GenService;&#10;import com.only4play.codegen.processor.creator.IgnoreCreator;&#10;import com.only4play.codegen.processor.updater.IgnoreUpdater;&#10;import com.only4play.codegen.processor.service.GenServiceImpl;&#10;import com.only4play.codegen.processor.updater.GenUpdater;&#10;import com.only4play.codegen.processor.vo.GenVo;&#10;import com.only4play.common.constants.ValidStatus;&#10;import com.only4play.jpa.converter.ValidStatusConverter;&#10;import com.only4play.jpa.support.BaseJpaAggregate;&#10;import javax.persistence.Convert;&#10;import javax.persistence.Entity;&#10;import javax.persistence.Table;&#10;import lombok.Data;&#10;&#10;@GenVo(pkgName = &quot;$package$.vo&quot;)&#10;@GenCreator(pkgName = &quot;$package$.creator&quot;)&#10;@GenUpdater(pkgName = &quot;$package$.updater&quot;)&#10;@GenRepository(pkgName = &quot;$package$.repository&quot;)&#10;@GenService(pkgName = &quot;$package$.service&quot;)&#10;@GenServiceImpl(pkgName = &quot;$package$.service&quot;)&#10;@GenQuery(pkgName = &quot;$package$.query&quot;)&#10;@GenMapper(pkgName = &quot;$package$.mapper&quot;)&#10;@GenController(pkgName = &quot;$controllerPackage$.controller&quot;)&#10;@GenCreateRequest(pkgName = &quot;$controllerPackage$.api.request&quot;,sourcePath = Constants.GEN_API_SOURCE)&#10;@GenUpdateRequest(pkgName = &quot;$controllerPackage$.api.request&quot;,sourcePath = Constants.GEN_API_SOURCE)&#10;@GenQueryRequest(pkgName = &quot;$controllerPackage$.api.request&quot;,sourcePath = Constants.GEN_API_SOURCE)&#10;@GenResponse(pkgName = &quot;$controllerPackage$.api.response&quot;,sourcePath = Constants.GEN_API_SOURCE)&#10;@GenFeign(pkgName = &quot;$controllerPackage$.api.service&quot;,sourcePath = Constants.GEN_API_SOURCE,serverName =$srvName$)&#10;@Entity&#10;@Table(name = &quot;$tableName$&quot;)&#10;@Data&#10;public class $entity$ extends BaseJpaAggregate {&#10;&#10;  @Convert(converter = ValidStatusConverter.class)&#10;  @IgnoreUpdater&#10;  @IgnoreCreator&#10;  private ValidStatus validStatus;&#10;&#10;  public void init() {&#10;    setValidStatus(ValidStatus.VALID);&#10;  }&#10;&#10;  public void valid(){&#10;    setValidStatus(ValidStatus.VALID);&#10;  }&#10;&#10;  public void invalid(){&#10;    setValidStatus(ValidStatus.INVALID);&#10;  }&#10;}" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="entity" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="controllerPackage" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="srvName" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="package" expression="currentPackage()" defaultValue="" alwaysStopAt="false" />
+    <variable name="tableName" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="op-controller" value="import com.bjgxzd.common.constants.ErrorCode;&#10;import com.bjgxzd.common.model.OpenAPIResponse;&#10;import com.bjgxzd.common.model.PageRequestWrapper;&#10;import com.bjgxzd.common.model.PageResult;&#10;import java.util.stream.Collectors;&#10;import org.springframework.data.domain.Page;&#10;import org.springframework.web.bind.annotation.GetMapping;&#10;import org.springframework.web.bind.annotation.PathVariable;&#10;import org.springframework.web.bind.annotation.PostMapping;&#10;import org.springframework.web.bind.annotation.RequestBody;&#10;import org.springframework.web.bind.annotation.RequestMapping;&#10;import org.springframework.web.bind.annotation.RestController;&#10;&#10;/**&#10; * @author gim&#10; */&#10;@RestController&#10;@RequestMapping(value = &quot;$lowerEntity$/v1&quot;)&#10;public class $entity$Controller {&#10;&#10;  private final I$entity$Service $lowerEntity$Service;&#10;&#10;  public $entity$Controller(I$entity$Service $lowerEntity$Service) {&#10;    this.$lowerEntity$Service = $lowerEntity$Service;&#10;  }&#10;&#10;  @PostMapping(value = &quot;create$entity$&quot;)&#10;  public OpenAPIResponse&lt;Long&gt; create$entity$(@RequestBody $entity$CreateRequest request) {&#10;    $entity$Dto dto = $entity$Mapper.INSTANCE.request2Dto(request);&#10;    return OpenAPIResponse.success($lowerEntity$Service.create$entity$(dto));&#10;  }&#10;&#10;  @PostMapping(value = &quot;valid/{id}&quot;)&#10;  public OpenAPIResponse&lt;String&gt; valid$entity$(@PathVariable Long id) {&#10;    $lowerEntity$Service.valid$entity$(id);&#10;    return OpenAPIResponse.success(ErrorCode.SUCCESS.getName());&#10;  }&#10;&#10;  @PostMapping(value = &quot;invalid/{id}&quot;)&#10;  public OpenAPIResponse&lt;String&gt; invalid$entity$(@PathVariable Long id) {&#10;    $lowerEntity$Service.invalid$entity$(id);&#10;    return OpenAPIResponse.success(ErrorCode.SUCCESS.getName());&#10;  }&#10;&#10;  @PostMapping(value = &quot;update$entity$&quot;)&#10;  public OpenAPIResponse&lt;String&gt; update$entity$(@RequestBody $entity$UpdateRequest request) {&#10;    $entity$Updater updater = $entity$Mapper.INSTANCE.request2Updater(request);&#10;    $lowerEntity$Service.update$entity$(updater);&#10;    return OpenAPIResponse.success(ErrorCode.SUCCESS.getName());&#10;  }&#10;&#10;  @PostMapping(value = &quot;findByPage&quot;)&#10;  public OpenAPIResponse&lt;PageResult&lt;$entity$Response&gt;&gt; findByPage(&#10;      @RequestBody PageRequestWrapper&lt;$entity$QueryRequest&gt; request) {&#10;    PageRequestWrapper&lt;$entity$Query&gt; wrapper = new PageRequestWrapper&lt;&gt;();&#10;    wrapper.setBean($entity$Mapper.INSTANCE.request2Query(request.getBean()));&#10;    wrapper.setSorts(request.getSorts());&#10;    wrapper.setPageSize(request.getPageSize());&#10;    wrapper.setPage(request.getPage());&#10;    Page&lt;$entity$Vo&gt; page = $lowerEntity$Service.findByPage(wrapper);&#10;    return OpenAPIResponse.success(&#10;        PageResult.of(&#10;            page.getContent().stream()&#10;                .map(vo -&gt; $entity$Mapper.INSTANCE.vo2ResponseCustom(vo))&#10;                .collect(Collectors.toList()),&#10;            page.getTotalElements(),&#10;            page.getSize(),&#10;            page.getNumber())&#10;    );&#10;  }&#10;&#10;  @GetMapping(value = &quot;findById/{id}&quot;)&#10;  public OpenAPIResponse&lt;$entity$Response&gt; findById(@PathVariable Long id) {&#10;    $entity$Vo vo = $lowerEntity$Service.findById(id);&#10;    $entity$Response response = $entity$Mapper.INSTANCE.vo2ResponseCustom(vo);&#10;    return OpenAPIResponse.success(response);&#10;  }&#10;&#10;}" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="entity" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="lowerEntity" expression="camelCase(entity)" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="iv" value="@IgnoreVo" description="" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="ic" value="@IgnoreUpdater&#10;@IgnoreDto" description="" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="fd" value="@FieldDesc(name = &quot;$name$&quot;)" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="name" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="op-enum" value="public enum $name$ implements BaseEnum&lt;$name$&gt; {&#10;  &#10;  $first$(1, &quot;name&quot;);&#10;&#10;  $name$(Integer code, String name) {&#10;    this.code = code;&#10;    this.name = name;&#10;  }&#10;&#10;  private Integer code;&#10;  private String name;&#10;&#10;  @Override&#10;  public Integer getCode() {&#10;    return this.code;&#10;  }&#10;&#10;  @Override&#10;  public String getName() {&#10;    return this.name;&#10;  }&#10;&#10;  public static Optional&lt;$name$&gt; of(Integer code) {&#10;    return Optional.ofNullable(BaseEnum.parseByCode($name$.class, code));&#10;  }&#10;&#10;}" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="first" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="op-converter" value="import javax.persistence.AttributeConverter;&#10;&#10;public class $entity$Converter implements AttributeConverter&lt;$entity$,Integer&gt; {&#10;&#10;  @Override&#10;  public Integer convertToDatabaseColumn($entity$ $lowCase$) {&#10;    return $lowCase$.getCode();&#10;  }&#10;&#10;  @Override&#10;  public $entity$ convertToEntityAttribute(Integer code) {&#10;    return $entity$.of(code).orElse(null);&#10;  }&#10;}" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="entity" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="lowCase" expression="camelCase(entity)" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="ap" value="@ApiModelProperty(value = &quot;$name$&quot;)" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="name" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="ao" value="@ApiOperation(value = &quot;$a$&quot;,notes = &quot;$b$&quot;)" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="a" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="b" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="am" value="@ApiModel" description="" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="pm" value="@PostMapping(value = &quot;$a$&quot;)" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="a" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="gm" value="@GetMapping(value = &quot;$a$&quot;)" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="a" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="enum-dict" value="@GetMapping(value = &quot;$lowEntity$&quot;)&#10;public JsonObject&lt;List&lt;EnumVo&gt;&gt; $lowEntity$(){&#10;  return JsonObject.success(EnumDictUtils.getEnumDictVo($entity$.class));&#10;}" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="entity" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="lowEntity" expression="camelCase(entity)" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="op-mapper" value="import org.mapstruct.Mapper;&#10;import org.mapstruct.factory.Mappers;&#10;&#10;@Mapper(uses = DateMapper.class)&#10;public interface $entity$Mapper {&#10;&#10;  $entity$Mapper INSTANCE = Mappers.getMapper($entity$Mapper.class);&#10;&#10;  $entity$ dtoToEntity($entity$Dto dto);&#10;  &#10;  $entity$Vo entityToVo($entity$ entity);&#10;}" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="entity" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="op-web-controller" value="@RestController&#10;@RequestMapping(value = &quot;$lowerEntity$&quot;)&#10;@Schema(title = &quot;$description$&quot;)&#10;@RequiredArgsConstructor&#10;public class $entity$Controller {&#10;&#10;  private final $entity$FeignService $lowerEntity$FeignService;&#10;&#10;  /**&#10;   * createRequest&#10;   */&#10;  @PostMapping(&quot;create$entity$&quot;)&#10;  public JsonObject&lt;Long&gt; create$entity$(@RequestBody $entity$CreateRequest request) {&#10;    return $lowerEntity$FeignService.create$entity$(request);&#10;  }&#10;&#10;  /**&#10;   * update request&#10;   */&#10;  @PostMapping(&quot;update$entity$&quot;)&#10;  public JsonObject&lt;String&gt; update$entity$(@RequestBody $entity$UpdateRequest request) {&#10;    return $lowerEntity$FeignService.update$entity$(request);&#10;  }&#10;&#10;  /**&#10;   * valid&#10;   */&#10;  @PostMapping(&quot;valid/{id}&quot;)&#10;  public JsonObject&lt;String&gt; valid$entity$(@PathVariable Long id) {&#10;    return $lowerEntity$FeignService.valid$entity$(id);&#10;  }&#10;&#10;  /**&#10;   * invalid&#10;   */&#10;  @PostMapping(&quot;invalid/{id}&quot;)&#10;  public JsonObject&lt;String&gt; invalid$entity$(@PathVariable Long id) {&#10;    return $lowerEntity$FeignService.invalid$entity$(id);&#10;  }&#10;&#10;  /**&#10;   * findById&#10;   */&#10;  @GetMapping(&quot;findById/{id}&quot;)&#10;  public JsonObject&lt;$entity$Response&gt; findById(@PathVariable Long id) {&#10;    return $lowerEntity$FeignService.findById(id);&#10;  }&#10;&#10;  /**&#10;   * findByPage request&#10;   */&#10;  @PostMapping(&quot;findByPage&quot;)&#10;  public JsonObject&lt;PageResult&lt;$entity$Response&gt;&gt; findByPage(&#10;      @RequestBody PageRequestWrapper&lt;$entity$QueryRequest&gt; request) {&#10;    return $lowerEntity$FeignService.findByPage(request);&#10;  }&#10;&#10;}" description="web 端controller" toReformat="false" toShortenFQNames="true">
+    <variable name="entity" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="lowerEntity" expression="camelCase(entity)" defaultValue="" alwaysStopAt="true" />
+    <variable name="description" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="entity-single" value="import com.only4play.codegen.processor.api.GenCreateRequest;&#10;import com.only4play.codegen.processor.api.GenQueryRequest;&#10;import com.only4play.codegen.processor.api.GenResponse;&#10;import com.only4play.codegen.processor.api.GenUpdateRequest;&#10;import com.only4play.codegen.processor.controller.GenController;&#10;import com.only4play.codegen.processor.creator.GenCreator;&#10;import com.only4play.codegen.processor.mapper.GenMapper;&#10;import com.only4play.codegen.processor.query.GenQuery;&#10;import com.only4play.codegen.processor.repository.GenRepository;&#10;import com.only4play.codegen.processor.service.GenService;&#10;import com.only4play.codegen.processor.creator.IgnoreCreator;&#10;import com.only4play.codegen.processor.updater.IgnoreUpdater;&#10;import com.only4play.codegen.processor.service.GenServiceImpl;&#10;import com.only4play.codegen.processor.updater.GenUpdater;&#10;import com.only4play.codegen.processor.vo.GenVo;&#10;import com.only4play.common.constants.ValidStatus;&#10;import com.only4play.jpa.converter.ValidStatusConverter;&#10;import com.only4play.jpa.support.BaseJpaAggregate;&#10;import javax.persistence.Convert;&#10;import javax.persistence.Entity;&#10;import javax.persistence.Table;&#10;import lombok.Data;&#10;&#10;@GenVo(pkgName = &quot;$package$.vo&quot;)&#10;@GenCreator(pkgName = &quot;$package$.creator&quot;)&#10;@GenUpdater(pkgName = &quot;$package$.updater&quot;)&#10;@GenRepository(pkgName = &quot;$package$.repository&quot;)&#10;@GenService(pkgName = &quot;$package$.service&quot;)&#10;@GenServiceImpl(pkgName = &quot;$package$.service&quot;)&#10;@GenQuery(pkgName = &quot;$package$.query&quot;)&#10;@GenMapper(pkgName = &quot;$package$.mapper&quot;)&#10;@GenController(pkgName = &quot;$controllerPackage$.controller&quot;)&#10;@GenCreateRequest(pkgName = &quot;$package$.request&quot;)&#10;@GenUpdateRequest(pkgName = &quot;$package$.request&quot;)&#10;@GenQueryRequest(pkgName = &quot;$package$.request&quot;)&#10;@GenResponse(pkgName = &quot;$package$.response&quot;)&#10;@Entity&#10;@Table(name = &quot;$tableName$&quot;)&#10;@Data&#10;public class $entity$ extends BaseJpaAggregate {&#10;&#10;  @Convert(converter = ValidStatusConverter.class)&#10;  @IgnoreUpdater&#10;  @IgnoreCreator&#10;  private ValidStatus validStatus;&#10;&#10;  public void init() {&#10;    setValidStatus(ValidStatus.VALID);&#10;  }&#10;&#10;  public void valid(){&#10;    setValidStatus(ValidStatus.VALID);&#10;  }&#10;&#10;  public void invalid(){&#10;    setValidStatus(ValidStatus.INVALID);&#10;  }&#10;}" description="单体应用生成entity" toReformat="false" toShortenFQNames="true">
+    <variable name="entity" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="tableName" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="controllerPackage" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="package" expression="currentPackage()" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="db-config" value="spring:&#10;  datasource:&#10;    username: root&#10;    password: root&#10;    url: jdbc:mysql://127.0.0.1:3306/platform?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true&amp;useSSL=false&amp;allowPublicKeyRetrieval=true&#10;    driver-class-name: com.mysql.cj.jdbc.Driver&#10;    hikari:&#10;      maximum-pool-size: 50&#10;      max-lifetime: 600000&#10;    tomcat:&#10;      test-on-borrow: true&#10;      validation-query: SELECT  1&#10;  jpa:&#10;    hibernate:&#10;      ddl-auto: update&#10;      naming:&#10;        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&#10;    show-sql: true&#10;    generate-ddl: true&#10;    open-in-view: false&#10;    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect&#10;    properties:&#10;      hibernate:&#10;        generate_statistics: false&#10;        jdbc:&#10;          batch_size: 100&#10;        order_inserts: true" description="数据库配置" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="GENERAL_YAML_FILE" value="true" />
+    </context>
+  </template>
+</templateSet>

@@ -1,0 +1,210 @@
+<application>
+  <component name="CapPluginsElasticsearchI18nSetting">
+    <option name="i18nMap">
+      <map>
+        <entry key="">
+          <value>
+            <map>
+              <entry key="action.cluster.add" value="Add cluster" />
+              <entry key="action.cluster.add.button.test" value="Test connection" />
+              <entry key="action.cluster.add.button.test.failure" value="Cannot connect to cluster. %s" />
+              <entry key="action.cluster.add.button.test.success" value="Connection successful" />
+              <entry key="action.cluster.add.cluster.already.exists" value="Cluster %s already exists" />
+              <entry key="action.cluster.add.cluster.name" value="Cluster name" />
+              <entry key="action.cluster.add.cluster.name.cannot.null" value="Cluster name cannot be null" />
+              <entry key="action.cluster.add.elasticsearch" value="Elasticsearch cluster" />
+              <entry key="action.cluster.add.title" value="New cluster" />
+              <entry key="action.cluster.connect" value="Connect cluster" />
+              <entry key="action.cluster.delete" value="Remove cluster" />
+              <entry key="action.cluster.delete.confirm" value="Are you sure to delete cluster %s?" />
+              <entry key="action.cluster.delete.description" value="Remove cluster node" />
+              <entry key="action.cluster.disconnect" value="Disconnect cluster" />
+              <entry key="action.cluster.edit" value="Edit cluster" />
+              <entry key="action.cluster.edit.description" value="Edit cluster node" />
+              <entry key="action.cluster.reconnect" value="Reconnect cluster" />
+              <entry key="action.cluster.refresh" value="Refresh cluster" />
+              <entry key="action.cluster.refresh.description" value="Refresh cluster node" />
+              <entry key="action.index.clone" value="Clone index" />
+              <entry key="action.index.clone.message" value="Target index name" />
+              <entry key="action.index.create" value="Create index" />
+              <entry key="action.index.create.index.body" value="Body" />
+              <entry key="action.index.create.index.name" value="Index name" />
+              <entry key="action.index.create.index.name.cannot.null" value="Index name cannot be null" />
+              <entry key="action.index.create.index.name.must.identifier" value="Index name must be a valid identifier" />
+              <entry key="action.index.create.title" value="Create index" />
+              <entry key="action.index.force.merge" value="Force merge index" />
+              <entry key="action.index.force.merge.segments" value="Maximum number of segments per shard" />
+              <entry key="action.index.new.alias" value="Create index alias" />
+              <entry key="action.index.new.alias.message" value="Alias name" />
+              <entry key="action.index.operate.confirm" value="Are you sure to do that: %s?" />
+              <entry key="action.kibana.dev.tools" value="Dev Tools" />
+              <entry key="action.kibana.dev.tools.console" value="Console" />
+              <entry key="action.refresh" value="Refresh" />
+              <entry key="background.progress.title.cluster.add" value="Add %s cluster %s" />
+              <entry key="background.progress.title.execute.request" value="Execute request" />
+              <entry key="background.progress.title.node.properties.loading" value="Loading properties %s" />
+              <entry key="background.progress.title.node.refresh" value="Refreshing %s" />
+              <entry key="background.progress.title.tree.node.expanding" value="Expanding node %s" />
+              <entry key="button.text.cancel" value="Cancel" />
+              <entry key="button.text.ok" value="OK" />
+              <entry key="cap.plugin.display.language" value="Display Language" />
+              <entry key="cap.plugin.internationalization" value="Internationalization" />
+              <entry key="cap.plugin.title" value="Cap Intellij Plugin" />
+              <entry key="elasticsearch.alias.alias" value="alias" />
+              <entry key="elasticsearch.alias.filter" value="filter" />
+              <entry key="elasticsearch.alias.index" value="index" />
+              <entry key="elasticsearch.alias.is_write_index" value="is_write_index" />
+              <entry key="elasticsearch.alias.routing.index" value="routing.index" />
+              <entry key="elasticsearch.alias.routing.search" value="routing.search" />
+              <entry key="elasticsearch.cluster" value="Cluster" />
+              <entry key="elasticsearch.index.docs.count" value="docs.count" />
+              <entry key="elasticsearch.index.docs.deleted" value="docs.deleted" />
+              <entry key="elasticsearch.index.health" value="health" />
+              <entry key="elasticsearch.index.index" value="index" />
+              <entry key="elasticsearch.index.pri" value="pri" />
+              <entry key="elasticsearch.index.pri.store.size" value="pri.store.size" />
+              <entry key="elasticsearch.index.rep" value="rep" />
+              <entry key="elasticsearch.index.status" value="status" />
+              <entry key="elasticsearch.index.store.size" value="store.size" />
+              <entry key="elasticsearch.index.uuid" value="uuid" />
+              <entry key="elasticsearch.node.cpu" value="cpu" />
+              <entry key="elasticsearch.node.heap.percent" value="heap" />
+              <entry key="elasticsearch.node.ip" value="ip" />
+              <entry key="elasticsearch.node.load_15m" value="load_15m" />
+              <entry key="elasticsearch.node.load_1m" value="load_1m" />
+              <entry key="elasticsearch.node.load_5m" value="load_5m" />
+              <entry key="elasticsearch.node.master" value="master" />
+              <entry key="elasticsearch.node.name" value="name" />
+              <entry key="elasticsearch.node.ram.percent" value="ram" />
+              <entry key="elasticsearch.node.role" value="node.role" />
+              <entry key="elasticsearch.plugin.component" value="component" />
+              <entry key="elasticsearch.plugin.name" value="name" />
+              <entry key="elasticsearch.plugin.version" value="version" />
+              <entry key="elasticsearch.request.autocommit" value="Auto Commit" />
+              <entry key="elasticsearch.request.body" value="Request Body" />
+              <entry key="elasticsearch.request.description" value="Description" />
+              <entry key="elasticsearch.request.execute.description" value="Execute query" />
+              <entry key="elasticsearch.request.execute.text" value="Execute query" />
+              <entry key="elasticsearch.request.explain.description" value="Explain query" />
+              <entry key="elasticsearch.request.explain.text" value="Explain query" />
+              <entry key="elasticsearch.request.method" value="Request Method" />
+              <entry key="elasticsearch.request.path" value="Request Path" />
+              <entry key="elasticsearch.result.tab.json" value="Json" />
+              <entry key="elasticsearch.result.tab.table" value="Table" />
+              <entry key="elasticsearch.result.tab.text" value="Text" />
+              <entry key="elasticsearch.result.tab.tree" value="Tree" />
+              <entry key="elasticsearch.sql.fetch.size" value="Fetch size" />
+              <entry key="elasticsearch.sql.open.editor" value="Open query editor" />
+              <entry key="elasticsearch.sql.submit.selected.only" value="Submit selected only" />
+              <entry key="group.name.delete.confirm" value="Are you sure to delete group %s?" />
+              <entry key="group.name.label" value="Group Name" />
+              <entry key="item.name.delete.confirm" value="Are you sure to delete item %s?" />
+              <entry key="item.name.label" value="Item Name" />
+              <entry key="tabbed.tab.properties" value="Properties" />
+              <entry key="validation.input.field.required" value="%s cannot be null" />
+            </map>
+          </value>
+        </entry>
+        <entry key="zh-CN">
+          <value>
+            <map>
+              <entry key="action.cluster.add" value="添加集群" />
+              <entry key="action.cluster.add.button.test" value="测试连接" />
+              <entry key="action.cluster.add.button.test.failure" value="连接失败 %s" />
+              <entry key="action.cluster.add.button.test.success" value="连接成功" />
+              <entry key="action.cluster.add.cluster.already.exists" value="集群 %s 已经存在" />
+              <entry key="action.cluster.add.cluster.name" value="集群名称" />
+              <entry key="action.cluster.add.cluster.name.cannot.null" value="集群名称不能为空" />
+              <entry key="action.cluster.add.elasticsearch" value="Elasticsearch集群" />
+              <entry key="action.cluster.add.title" value="新集群" />
+              <entry key="action.cluster.connect" value="连接集群" />
+              <entry key="action.cluster.delete" value="移除集群" />
+              <entry key="action.cluster.delete.confirm" value="您确定要移除集群 %s？" />
+              <entry key="action.cluster.delete.description" value="移除集群节点" />
+              <entry key="action.cluster.disconnect" value="断开连接" />
+              <entry key="action.cluster.reconnect" value="重新连接" />
+              <entry key="action.cluster.refresh" value="刷新集群" />
+              <entry key="action.cluster.refresh.description" value="刷新集群节点" />
+              <entry key="action.index.clone" value="克隆索引" />
+              <entry key="action.index.clone.message" value="目标索引名称" />
+              <entry key="action.index.create" value="创建索引" />
+              <entry key="action.index.create.index.body" value="请求体" />
+              <entry key="action.index.create.index.name" value="索引名称" />
+              <entry key="action.index.create.index.name.cannot.null" value="索引名称不能为空" />
+              <entry key="action.index.create.index.name.must.identifier" value="索引名称必须是一个有效的标识符" />
+              <entry key="action.index.create.title" value="创建索引" />
+              <entry key="action.index.force.merge" value="强制合并索引" />
+              <entry key="action.index.force.merge.segments" value="每个分片的最大分段数" />
+              <entry key="action.index.new.alias" value="创建索引别名" />
+              <entry key="action.index.new.alias.message" value="别名" />
+              <entry key="action.index.operate.confirm" value="您确定要这样做吗：%s?" />
+              <entry key="action.kibana.dev.tools" value="开发工具" />
+              <entry key="action.kibana.dev.tools.console" value="控制台" />
+              <entry key="action.refresh" value="刷新" />
+              <entry key="background.progress.title.cluster.add" value="添加 %s 集群 %s" />
+              <entry key="background.progress.title.execute.request" value="执行请求" />
+              <entry key="background.progress.title.node.properties.loading" value="加载属性 %s" />
+              <entry key="background.progress.title.node.refresh" value="刷新 %s" />
+              <entry key="background.progress.title.tree.node.expanding" value="展开节点 %s" />
+              <entry key="button.text.cancel" value="取消" />
+              <entry key="button.text.ok" value="确定" />
+              <entry key="cap.plugin.title" value="Cap Intellij Plugin" />
+              <entry key="elasticsearch.alias.alias" value="别名" />
+              <entry key="elasticsearch.alias.filter" value="过滤" />
+              <entry key="elasticsearch.alias.index" value="索引" />
+              <entry key="elasticsearch.alias.is_write_index" value="is_write_index" />
+              <entry key="elasticsearch.alias.routing.index" value="routing.index" />
+              <entry key="elasticsearch.alias.routing.search" value="routing.search" />
+              <entry key="elasticsearch.cluster" value="集群" />
+              <entry key="elasticsearch.index.docs.count" value="文档数量" />
+              <entry key="elasticsearch.index.docs.deleted" value="删除的文档数量" />
+              <entry key="elasticsearch.index.health" value="健康" />
+              <entry key="elasticsearch.index.index" value="索引" />
+              <entry key="elasticsearch.index.pri" value="主分片" />
+              <entry key="elasticsearch.index.pri.store.size" value="主分片存储大小" />
+              <entry key="elasticsearch.index.rep" value="副分片" />
+              <entry key="elasticsearch.index.status" value="状态" />
+              <entry key="elasticsearch.index.store.size" value="存储大小" />
+              <entry key="elasticsearch.index.uuid" value="UUID" />
+              <entry key="elasticsearch.node.cpu" value="CPU使用率" />
+              <entry key="elasticsearch.node.heap.percent" value="堆栈使用率" />
+              <entry key="elasticsearch.node.ip" value="IP地址" />
+              <entry key="elasticsearch.node.load_15m" value="load_15m" />
+              <entry key="elasticsearch.node.load_1m" value="load_1m" />
+              <entry key="elasticsearch.node.load_5m" value="load_5m" />
+              <entry key="elasticsearch.node.master" value="主节点" />
+              <entry key="elasticsearch.node.name" value="名称" />
+              <entry key="elasticsearch.node.ram.percent" value="内存使用率" />
+              <entry key="elasticsearch.node.role" value="节点角色" />
+              <entry key="elasticsearch.plugin.component" value="组件" />
+              <entry key="elasticsearch.plugin.name" value="名称" />
+              <entry key="elasticsearch.plugin.version" value="版本" />
+              <entry key="elasticsearch.request.autocommit" value="自动提交" />
+              <entry key="elasticsearch.request.body" value="请求体" />
+              <entry key="elasticsearch.request.description" value="描述" />
+              <entry key="elasticsearch.request.execute.description" value="执行" />
+              <entry key="elasticsearch.request.execute.text" value="执行" />
+              <entry key="elasticsearch.request.explain.description" value="解释" />
+              <entry key="elasticsearch.request.explain.text" value="解释" />
+              <entry key="elasticsearch.request.method" value="请求方法" />
+              <entry key="elasticsearch.request.path" value="请求路径" />
+              <entry key="elasticsearch.result.tab.json" value="JSON" />
+              <entry key="elasticsearch.result.tab.table" value="表格" />
+              <entry key="elasticsearch.result.tab.text" value="文本" />
+              <entry key="elasticsearch.result.tab.tree" value="树形" />
+              <entry key="elasticsearch.sql.fetch.size" value="获取大小" />
+              <entry key="elasticsearch.sql.open.editor" value="打开查询编辑器" />
+              <entry key="elasticsearch.sql.submit.selected.only" value="只提交选中的内容" />
+              <entry key="group.name.delete.confirm" value="您确定要删除分组 %s？" />
+              <entry key="group.name.label" value="分组名称" />
+              <entry key="item.name.delete.confirm" value="您确定要删除项 %s？" />
+              <entry key="item.name.label" value="项名称" />
+              <entry key="tabbed.tab.properties" value="属性" />
+              <entry key="validation.input.field.required" value="%s 不能为空" />
+            </map>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</application>

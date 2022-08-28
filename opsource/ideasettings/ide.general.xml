@@ -1,0 +1,12 @@
+<application>
+  <component name="GeneralSettings">
+    <option name="confirmExit" value="false" />
+  </component>
+  <component name="StatusBar">
+    <option name="widgets">
+      <map>
+        <entry key="Encoding" value="false" />
+      </map>
+    </option>
+  </component>
+</application>
